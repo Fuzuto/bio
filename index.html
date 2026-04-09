@@ -769,6 +769,36 @@
     }
   }, { passive: false });
 
+  const SUPABASE_URL = "https://fuzfzrwgyfrmqbownrvz.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1emZ6cndneWZybXFib3ducnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NjE4NzgsImV4cCI6MjA5MTMzNzg3OH0.gqbgrSSzL5Ce3uOHyNNJeQsEJYN119ULvyi0kSc5WS0";
+
+  async function updateViews() {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/profile_views?id=eq.1`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    });
+
+    const data = await res.json();
+    let count = data[0].count;
+
+    count++;
+
+    await fetch(`${SUPABASE_URL}/rest/v1/profile_views?id=eq.1`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      },
+      body: JSON.stringify({ count })
+    });
+
+    document.getElementById("viewsCount").textContent = count;
+  }
+
+  updateViews();
 </script>
 </body>
 </html>
