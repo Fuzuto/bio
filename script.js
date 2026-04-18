@@ -6,6 +6,96 @@ const CONFIG = {
     { src: "myfirstgtamcpevnserver2.jpg", title: "SkyBlock - Minecraft PE Server",   description: "another image of a Minecraft server I’m proud of. At that time, I was still a middle school student with many mistakes and limited experience in management. I learned a lot from that experience.",                palette: "linear-gradient(135deg,#f43f5e,#8b5cf6)" },
     { src: "myfirstlaptopsetup.jpg", title: "Setup Photo — First Laptop",    description: "This is my laptop setup with an old 720p monitor. For me, this is where everything started and where I grew up. I love my parents because they trusted me and gave me this meaningful gift.",         palette: "linear-gradient(135deg,#0ea5e9,#22d3ee)" },
   ],
+  certificatesPreview: 3,
+  certificates: [
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/0320f8588062",
+      link:  "https://www.hackerrank.com/certificates/0320f8588062",
+      title: "JavaScript (Intermediate)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/029d3f4c765b",
+      link:  "https://www.hackerrank.com/certificates/029d3f4c765b",
+      title: "SQL (Advanced)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/0831cde5eb8b",
+      link:  "https://www.hackerrank.com/certificates/0831cde5eb8b",
+      title: "CSS (Basic)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/102b545bc513",
+      link:  "https://www.hackerrank.com/certificates/102b545bc513",
+      title: "React (Basic)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/35be72b793c5",
+      link:  "https://www.hackerrank.com/certificates/35be72b793c5",
+      title: "JavaScript (Basic)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+    {
+      embed: "https://www.hackerrank.com/certificates/iframe/a09490f24f6d",
+      link:  "https://www.hackerrank.com/certificates/a09490f24f6d",
+      title: "C# (Basic)",
+      issuer: "Issuer / Platform",
+      date:  "2024",
+    },
+  ],
+
+  skills: [
+    {
+      title: "Languages",
+      accent: "#8b5cf6",
+      icon: '<path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/>',
+      items: [
+        { name: "Java",       icon: "java/java-original.svg" },
+        { name: "JavaScript", icon: "javascript/javascript-original.svg" },
+        { name: "HTML5",      icon: "html5/html5-original.svg" },
+        { name: "CSS3",       icon: "css3/css3-original.svg" },
+        { name: "PHP",        icon: "php/php-original.svg" },
+      ],
+    },
+    {
+      title: "Frameworks & Libraries",
+      accent: "#22d3ee",
+      icon: '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>',
+      items: [
+        { name: "React", icon: "react/react-original.svg" },
+      ],
+    },
+    {
+      title: "Databases",
+      accent: "#f472b6",
+      icon: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+      items: [
+        { name: "MySQL",   icon: "mysql/mysql-original.svg" },
+        { name: "MongoDB", icon: "mongodb/mongodb-original.svg" },
+      ],
+    },
+    {
+      title: "Tools & IDEs",
+      accent: "#facc15",
+      icon: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+      items: [
+        { name: "VS Code",       icon: "vscode/vscode-original.svg" },
+        { name: "IntelliJ IDEA", icon: "intellij/intellij-original.svg" },
+        { name: "WebStorm",      icon: "webstorm/webstorm-original.svg" },
+        { name: "Git",           icon: "git/git-original.svg" },
+        { name: "Postman",       icon: "postman/postman-original.svg" },
+      ],
+    }, 
+  ],
+
   videosPreview: 2,
   youtubeVideos: [
     { url: "https://www.youtube.com/embed/64d1ysI9420", title: "Simple reforge system",       meta: "Server Development · Project" },
@@ -375,7 +465,108 @@ function initVideos() {
   if (moreHost && !isFullPage && items.length > limit) {
     moreHost.innerHTML = `
       <a href="highlights.html" class="btn btn--ghost gallery__more-btn">
-        <span>View all ${items.length} highlights</span>
+        <span>View all ${items.length} videos</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>`;
+  }
+
+  observeReveal();
+}
+
+function initSkills() {
+  const grid = $("#skills-grid");
+  if (!grid) return;
+
+  const categories = CONFIG.skills || [];
+  const iconBase = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/";
+
+  categories.forEach((cat) => {
+    const card = document.createElement("article");
+    card.className = "skill-card reveal";
+    card.style.setProperty("--ico", cat.accent || "var(--accent)");
+
+    const items = (cat.items || [])
+      .map((item) => {
+        const hasIcon = !!item.icon;
+        const logo = hasIcon
+          ? `<img class="skill__logo" src="${escapeHtml(iconBase + item.icon)}" alt="${escapeHtml(item.name)} logo" loading="lazy" decoding="async" onerror="this.closest('.skill').classList.add('skill--noicon'); this.remove();" />`
+          : "";
+        const letter = `<span class="skill__letter" aria-hidden="true">${escapeHtml(item.name.charAt(0))}</span>`;
+        return `
+          <span class="skill${hasIcon ? "" : " skill--noicon"}">
+            ${logo}${letter}
+            <span class="skill__name">${escapeHtml(item.name)}</span>
+          </span>`;
+      })
+      .join("");
+
+    card.innerHTML = `
+      <div class="skill-card__head">
+        <div class="skill-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${cat.icon || ""}</svg>
+        </div>
+        <h3 class="skill-card__title">${escapeHtml(cat.title)}</h3>
+      </div>
+      <div class="skill-list">${items}</div>
+    `;
+
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+
+    grid.appendChild(card);
+  });
+
+  observeReveal();
+}
+
+function initCertificates() {
+  const grid = $("#certificates");
+  if (!grid) return;
+
+  const isFullPage = grid.dataset.full === "true";
+  const items = CONFIG.certificates || [];
+  const limit = isFullPage ? items.length : (CONFIG.certificatesPreview || 3);
+  const visible = items.slice(0, limit);
+
+  visible.forEach((c) => {
+    const embed = c.embed || c.link || "";
+    const link  = c.link  || c.embed || "";
+    if (!embed && !link) return;
+
+    const card = document.createElement("article");
+    card.className = "certificate reveal";
+    const metaBits = [c.issuer, c.date].filter(Boolean).map(escapeHtml).join(" · ");
+
+    card.innerHTML = `
+      <div class="certificate__frame">
+        <iframe
+          src="${escapeHtml(embed)}"
+          title="${escapeHtml(c.title || "Certificate")}"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          allowfullscreen></iframe>
+      </div>
+      <div class="certificate__body">
+        <h3 class="certificate__title">${escapeHtml(c.title || "Certificate")}</h3>
+        ${metaBits ? `<p class="certificate__meta">${metaBits}</p>` : ""}
+        <a class="certificate__open" href="${escapeHtml(link)}" target="_blank" rel="noopener">
+          <span>Open Full View</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const moreHost = $("#certificatesMore");
+  if (moreHost && !isFullPage && items.length > limit) {
+    moreHost.innerHTML = `
+      <a href="certificates.html" class="btn btn--ghost gallery__more-btn">
+        <span>View all ${items.length} certificates</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>`;
   }
@@ -730,6 +921,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initGallery();
   initModal();
   initVideos();
+  initSkills();
+  initCertificates();
   initPlayer();
   initScrollSpy();
   initOverscrollBounce();

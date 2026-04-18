@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Videos</title>
-  <meta name="description" content="Highlight videos from recent tournaments and streams." />
+  <title>Portfolio — Certificates</title>
+  <meta name="description" content="A collection of earned certificates and credentials." />
   <link rel="icon" href="me.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,8 +31,8 @@
       <a href="index.html#contact" class="nav__link">Contact</a>
       <a href="index.html#location" class="nav__link">Location</a>
       <a href="index.html#gallery" class="nav__link">Gallery</a>
-      <a href="highlights.html" class="nav__link active">Videos</a>
-      <a href="certificates.html" class="nav__link">Certificates</a>
+      <a href="highlights.html" class="nav__link">Videos</a>
+      <a href="certificates.html" class="nav__link active">Certificates</a>
     </nav>
     <div class="nav__actions">
       <button id="navToggle" class="icon-btn nav__hamburger" aria-label="Open menu" aria-expanded="false">
@@ -45,16 +45,23 @@
     <section class="section section--head-only">
       <div class="container">
         <header class="section__head reveal">
-          <span class="eyebrow">Videos</span>
-          <h1 class="section__title">Minecraft <span class="gradient-text">projects</span></h1>
-          <p class="section__sub">These are some interesting videos from private projects I have not made public, along with gameplay recordings from my server that I have saved.</p>
+          <span class="eyebrow">Certificates</span>
+          <h1 class="section__title">All <span class="gradient-text">credentials</span></h1>
+          <p class="section__sub">Every certificate I've earned — preview each one below or open the full view in a new tab.</p>
         </header>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="videos" id="videos" data-full="true">
+        <div class="certificates" id="certificates" data-full="true">
+        </div>
+
+        <div class="gallery__back">
+          <a href="index.html#certificates-preview" class="btn btn--ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>Back to home</span>
+          </a>
         </div>
       </div>
     </section>
