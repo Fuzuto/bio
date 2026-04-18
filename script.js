@@ -476,6 +476,7 @@ function initVideos() {
 function initSkills() {
   const grid = $("#skills-grid");
   if (!grid) return;
+  grid.innerHTML = "";
 
   const categories = CONFIG.skills || [];
   const iconBase = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/";
